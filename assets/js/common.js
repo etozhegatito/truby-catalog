@@ -7,7 +7,8 @@ var NAV = [
   { href: 'index.html',      label: 'Каталог' },
   { href: 'calculator.html', label: 'Калькулятор веса' },
   { href: 'compare.html',    label: 'Сравнение' },
-  { href: 'faq.html',        label: 'FAQ' }
+  { href: 'faq.html',        label: 'FAQ' },
+  { href: 'presentation.html', label: 'Презентация' }
 ];
 
 function renderHeader(active) {
