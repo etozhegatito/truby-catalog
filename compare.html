@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сравнение труб — ТРУБПРОМ</title>
+<meta name="description" content="Сравните до четырёх видов труб построчно: материал, ГОСТ, давление, температура, размеры, покрытие и применение.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='17' fill='none' stroke='%23f26b1d' stroke-width='4'/><circle cx='20' cy='20' r='8' fill='none' stroke='%230d3b5c' stroke-width='4'/></svg>">
+</head>
+<body>
+
+<div id="header-slot"></div>
+
+<section class="hero" style="padding:46px 0 52px">
+  <div class="container">
+    <div class="eyebrow">Сервис</div>
+    <h1 style="margin-bottom:10px">Сравнение труб</h1>
+    <p class="lead" style="margin-bottom:0">
+      Отметьте до четырёх видов — характеристики встанут рядом, строка в строку.
+      Удобно, когда выбираете между сталью и полимером или между двумя способами изоляции.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Шаг 1</div>
+        <h2>Выберите трубы для сравнения</h2>
+        <p>Выбрано <b id="pickCount">0</b> из 4. Отметки сохраняются между страницами сайта.</p>
+      </div>
+      <button class="btn btn-outline" id="clearPick">Очистить выбор</button>
+    </div>
+
+    <div class="field" style="max-width:420px;margin-bottom:16px">
+      <label for="pickSearch">Быстрый поиск по списку</label>
+      <input type="search" id="pickSearch" placeholder="начните вводить название">
+    </div>
+
+    <div class="picker" id="picker"></div>
+
+    <div class="section-head" style="margin-top:44px">
+      <div>
+        <div class="kicker">Шаг 2</div>
+        <h2>Таблица сравнения</h2>
+      </div>
+    </div>
+    <div id="cmpOut"></div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/visuals.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/compare.js"></script>
+</body>
+</html>

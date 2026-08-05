@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор веса трубы — ТРУБПРОМ</title>
+<meta name="description" content="Расчёт веса круглой, квадратной и прямоугольной трубы: вес метра, вес партии, метров в тонне, объём и площадь поверхности.">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'><circle cx='20' cy='20' r='17' fill='none' stroke='%23f26b1d' stroke-width='4'/><circle cx='20' cy='20' r='8' fill='none' stroke='%230d3b5c' stroke-width='4'/></svg>">
+</head>
+<body>
+
+<div id="header-slot"></div>
+
+<section class="hero" style="padding:46px 0 52px">
+  <div class="container">
+    <div class="eyebrow">Сервис</div>
+    <h1 style="margin-bottom:10px">Калькулятор веса трубы</h1>
+    <p class="lead" style="margin-bottom:0">
+      Круглое, квадратное и прямоугольное сечение, 17 материалов. Считает вес погонного метра,
+      вес всей партии, длину в тонне, внутренний объём и площадь поверхности под покраску или изоляцию.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container calc-wrap">
+
+    <div class="calc-form">
+      <div class="row one">
+        <div class="field">
+          <label for="cPreset">Подставить размеры из каталога</label>
+          <select id="cPreset"><option value="">— выбрать вид трубы —</option></select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="cShape">Форма сечения</label>
+          <select id="cShape">
+            <option value="round">Круглая</option>
+            <option value="square">Квадратная</option>
+            <option value="rect">Прямоугольная</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="cMaterial">Материал</label>
+          <select id="cMaterial"></select>
+        </div>
+      </div>
+
+      <div class="row three" id="dimRow">
+        <div class="field" id="fldD">
+          <label for="cD">Наружный диаметр D, мм</label>
+          <input type="number" id="cD" value="108" min="1" step="0.1">
+        </div>
+        <div class="field" id="fldB" style="display:none">
+          <label for="cB">Сторона B, мм</label>
+          <input type="number" id="cB" value="40" min="1" step="0.1">
+        </div>
+        <div class="field">
+          <label for="cS">Толщина стенки s, мм</label>
+          <input type="number" id="cS" value="4" min="0.1" step="0.1">
+        </div>
+        <div class="field">
+          <label for="cRho">Плотность ρ, кг/м³</label>
+          <input type="number" id="cRho" value="7850" min="1" step="1">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="cLen">Длина одной трубы, м</label>
+          <input type="number" id="cLen" value="6" min="0.01" step="0.01">
+        </div>
+        <div class="field">
+          <label for="cQty">Количество, шт</label>
+          <input type="number" id="cQty" value="1" min="1" step="1">
+        </div>
+      </div>
+
+      <div class="note" id="calcHint">
+        Плотность подставляется автоматически при выборе материала, но её можно изменить вручную —
+        например, для конкретного сплава или композита.
+      </div>
+    </div>
+
+    <div>
+      <div class="calc-result">
+        <div style="font-size:13px;color:#8ea6bb;letter-spacing:.08em;text-transform:uppercase;font-weight:700">Вес одного метра</div>
+        <div class="big" id="rKg">—<small> кг/м</small></div>
+        <div class="sub" id="rDesc">Введите размеры</div>
+
+        <div class="calc-out">
+          <div><span>Вес одной трубы</span><b id="rPiece">—</b></div>
+          <div><span>Вес всей партии</span><b id="rTotal">—</b></div>
+          <div><span>Метров в тонне</span><b id="rPerTon">—</b></div>
+          <div><span>Внутренний объём</span><b id="rVol">—</b></div>
+          <div><span>Площадь поверхности</span><b id="rArea">—</b></div>
+          <div><span>Внутренний размер</span><b id="rInner">—</b></div>
+        </div>
+
+        <div class="calc-formula" id="rFormula"></div>
+      </div>
+
+      <div class="panel" style="margin-top:22px">
+        <h2>Как считается</h2>
+        <p>Вес погонного метра — это площадь кольца (или рамки профиля) в сечении, умноженная на плотность материала.</p>
+        <ul class="ticks">
+          <li><b>Круглая:</b> m = π · (D − s) · s · ρ / 1 000 000</li>
+          <li><b>Квадратная:</b> m ≈ 4 · (a − s) · s · ρ / 1 000 000</li>
+          <li><b>Прямоугольная:</b> m ≈ 2 · (a + b − 2s) · s · ρ / 1 000 000</li>
+        </ul>
+        <p style="margin-top:14px;margin-bottom:0;color:var(--muted);font-size:14px">
+          Размеры в миллиметрах, плотность в кг/м³, результат — в килограммах на метр.
+          Для профильных труб формула не учитывает скругление углов, поэтому расчёт даёт результат
+          на 1–3 % выше фактического. Стальные трубы дополнительно отличаются от теоретического веса
+          из-за допуска на толщину стенки (часто −10 % / +12,5 %).
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-slot"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/visuals.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/calculator.js"></script>
+</body>
+</html>
