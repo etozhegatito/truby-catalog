@@ -198,11 +198,28 @@ sup.ref a { color: inherit; }
   .chart { margin-top: 18px; }
 }
 
-/* печать в PDF */
+/* печать в PDF — страница 16:9, один слайд = одна страница */
+@page { size: 1280px 720px; margin: 0; }
+
 @media print {
-  .deck-nav, .deck-hint, .site-header, .site-footer { display: none !important; }
-  .deck { height: auto; overflow: visible; }
-  .slide { min-height: auto; page-break-after: always; border: 0; padding: 26px 0; }
-  .slide.dark { background: #071f31 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .deck-nav, .deck-hint, .site-header, .site-footer, .hero-actions { display: none !important; }
   body { background: #fff; }
+  .deck { height: auto; overflow: visible; scroll-snap-type: none; }
+  .slide {
+    height: 720px; min-height: 720px; width: 1280px;
+    padding: 40px 54px; border: 0;
+    page-break-after: always; break-after: page;
+    page-break-inside: avoid; break-inside: avoid;
+    overflow: hidden;
+  }
+  .slide:last-child { page-break-after: auto; break-after: auto; }
+  .slide.dark {
+    background: #071f31 !important;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .hbar-fill, .split .a, .split .b, .vbar .col, .box .n, .qitem .q, .eyebrow-d::before, .tl-item::after {
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .slide-num { bottom: 18px; right: 54px; }
+  a { text-decoration: none; }
 }
