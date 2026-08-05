@@ -203,13 +203,42 @@ sup.ref a:hover { background: var(--accent); color: #fff; }
   padding: 7px 14px; border-radius: 999px; z-index: 40; transition: opacity .4s;
 }
 
+/* ---------- адаптив: колонки сокращаются постепенно, а не сразу до одной ---------- */
+@media (max-width: 1180px) {
+  .cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1040px) {
+  .cols-3 { grid-template-columns: repeat(2, 1fr); }
+  .tl { grid-template-columns: repeat(2, 1fr); row-gap: 26px; }
+}
 @media (max-width: 900px) {
-  .cols-2, .cols-3, .cols-4, .qlist, .tl, .sources { grid-template-columns: 1fr; columns: 1; }
-  .tl-item::before { display: none; }
-  .slide { min-height: auto; padding-block: 46px; }
+  .slide { min-height: auto; padding-block: 44px; }
   .deck { scroll-snap-type: none; height: auto; overflow: visible; }
-  .hbar-row { grid-template-columns: 130px 1fr 52px; }
   .deck-nav { display: none; }
+
+  /* на узком экране уменьшаем кегль, иначе слайд растягивается на два экрана */
+  .slide h1 { font-size: clamp(26px, 6vw, 36px); }
+  .slide h2 { font-size: clamp(21px, 4.4vw, 27px); }
+  .slide .sub { font-size: 14.5px; }
+  .box { padding: 14px 16px; }
+  .box h3 { font-size: 15px; }
+  .box p { font-size: 13.5px; }
+  .cols-2, .cols-3, .cols-4 { gap: 12px; margin-top: 18px; }
+  .qlist { gap: 10px 20px; margin-top: 18px; }
+  .dtable { font-size: 12.5px; }
+  .dtable th, .dtable td { padding: 6px 8px; }
+  .hbar-row { grid-template-columns: 128px 1fr 50px; gap: 10px; }
+  .fact b { font-size: clamp(24px, 5.5vw, 32px); }
+  .sources { columns: 1; }
+}
+@media (max-width: 720px) {
+  .cols-2, .cols-3, .cols-4, .qlist, .tl { grid-template-columns: 1fr; }
+  .tl-item { padding-right: 0; }
+  .tl-item::before { display: none; }
+  .tl-item .yr { margin-top: 22px; }
+  .split { height: auto; flex-direction: column; }
+  .split div { padding: 10px 0; }
+  .vbars { gap: 14px; height: 150px; }
 }
 
 
